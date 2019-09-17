@@ -1,0 +1,6 @@
+{
+    "embedding": "deny",
+    "authentication":{
+        "oauthFlow":"none"
+    }
+}

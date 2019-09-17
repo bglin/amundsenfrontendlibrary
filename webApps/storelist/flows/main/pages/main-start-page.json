@@ -1,0 +1,122 @@
+{
+  "pageModelVersion": "19.1.3",
+  "title": "",
+  "description": "",
+  "variables": {
+    "storeListSDP": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "mmastores/getall_Store",
+        "idAttribute": "id",
+        "itemsPath": "items",
+        "responseType": "page:getallStoreResponse"
+      }
+    },
+    "oj_table_1324583209_1SelectedId": {
+      "type": "string",
+      "defaultValue": ""
+    }
+  },
+  "types": {
+    "getallStoreResponse": {
+      "items": [
+        {
+          "id": "number",
+          "name": "string",
+          "city": "string",
+          "state": "string"
+        }
+      ]
+    },
+    "@decorators.getallStoreResponse": {
+      "endpoint": "getall_Store",
+      "service": "mmastores",
+      "path": "response"
+    }
+  },
+  "chains": {
+    "navigateToStoreDetailChain": {
+      "root": "navigateToDetail",
+      "variables": {
+        "storeId": {
+          "type": "string",
+          "input": "fromCaller",
+          "required": true
+        }
+      },
+      "actions": {
+        "navigateToDetail": {
+          "module": "vb/action/builtin/navigateToPageAction",
+          "parameters": {
+            "history": "push",
+            "page": "main-store-detail",
+            "params": {
+              "storeId": "[[ $chain.variables.storeId ]]"
+            }
+          },
+          "outcomes": {
+            "success": ""
+          }
+        }
+      }
+    },
+    "oj_table_1324583209_1ChangeSelectionChain": {
+      "variables": {
+        "storeId": {
+          "type": "string",
+          "input": "fromCaller",
+          "defaultValue": ""
+        }
+      },
+      "root": "assignVariable",
+      "actions": {
+        "assignVariable": {
+          "module": "vb/action/builtin/assignVariablesAction",
+          "parameters": {
+            "$page.variables.oj_table_1324583209_1SelectedId": {
+              "source": "[[ $chain.variables.storeId ]]"
+            }
+          },
+          "outcomes": {
+            "success": ""
+          }
+        }
+      }
+    }
+  },
+  "eventListeners": {
+    "oj_table_1324583209_1SelectionChanged": {
+      "chains": [
+        {
+          "chainId": "oj_table_1324583209_1ChangeSelectionChain",
+          "parameters": {
+            "storeId": "[[ ($event.detail.value && $event.detail.value[0] && 'row' in $event.detail.value[0].startKey) ? $event.detail.value[0].startKey.row : '' ]]"
+          }
+        }
+      ]
+    },
+    "storeDetailButtonClicked": {
+      "chains": [
+        {
+          "chainId": "navigateToStoreDetailChain",
+          "parameters": {
+            "storeId": "[[ $page.variables.oj_table_1324583209_1SelectedId ]]"
+          }
+        }
+      ]
+    }
+  },
+  "imports": {
+    "components": {
+      "oj-table": {
+        "path": "ojs/ojtable"
+      },
+      "oj-toolbar": {
+        "path": "ojs/ojtoolbar"
+      },
+      "oj-button": {
+        "path": "ojs/ojbutton"
+      }
+    }
+  }
+}

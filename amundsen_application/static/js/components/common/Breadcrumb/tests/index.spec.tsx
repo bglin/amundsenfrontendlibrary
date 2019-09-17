@@ -3,8 +3,7 @@ import * as React from 'react';
 import { shallow } from 'enzyme';
 
 import { Link } from 'react-router-dom';
-import { Breadcrumb, BreadcrumbProps, mapStateToProps, mapDispatchToProps } from '../';
-import globalState from '../../../../fixtures/globalState';
+import { Breadcrumb, BreadcrumbProps } from '../';
 
 describe('Breadcrumb', () => {
   let props: BreadcrumbProps;
@@ -16,7 +15,6 @@ describe('Breadcrumb', () => {
         path: 'testPath',
         text: 'testText',
         searchTerm: '',
-        loadPreviousSearch: jest.fn(),
       };
       subject = shallow(<Breadcrumb {...props} />);
     });
@@ -36,19 +34,18 @@ describe('Breadcrumb', () => {
     beforeEach(() => {
       props = {
         searchTerm: 'testTerm',
-        loadPreviousSearch: jest.fn(),
       };
       subject = shallow(<Breadcrumb {...props} />);
     });
 
     it('renders Link with correct path', () => {
-      expect(subject.find('a').props()).toMatchObject({
-        onClick: props.loadPreviousSearch,
+      expect(subject.find(Link).props()).toMatchObject({
+        to: '/search',
       });
     });
 
     it('renders Link with correct text', () => {
-      expect(subject.find('a').find('span').text()).toEqual('Search Results');
+      expect(subject.find(Link).find('span').text()).toEqual('Search Results');
     });
   });
 
@@ -58,7 +55,6 @@ describe('Breadcrumb', () => {
         path: 'testPath',
         text: 'testText',
         searchTerm: 'testTerm',
-        loadPreviousSearch: jest.fn(),
       };
       subject = shallow(<Breadcrumb {...props} />);
     });
@@ -71,30 +67,6 @@ describe('Breadcrumb', () => {
 
     it('renders Link with correct text', () => {
       expect(subject.find(Link).find('span').text()).toEqual('testText');
-    });
-  });
-
-  describe('mapStateToProps', () => {
-    let result;
-    beforeAll(() => {
-      result = mapStateToProps(globalState);
-    });
-
-    it('sets searchTerm on the props', () => {
-      expect(result.searchTerm).toEqual(globalState.search.search_term);
-    });
-  });
-
-  describe('mapDispatchToProps', () => {
-    let dispatch;
-    let result;
-    beforeAll(() => {
-      dispatch = jest.fn(() => Promise.resolve());
-      result = mapDispatchToProps(dispatch);
-    });
-
-    it('sets loadPreviousSearch on the props', () => {
-      expect(result.loadPreviousSearch).toBeInstanceOf(Function);
     });
   });
 });

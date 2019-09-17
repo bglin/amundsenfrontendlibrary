@@ -1,0 +1,16 @@
+<div class="oj-flex">
+    <h1 id="h1--1274776074-1" class="oj-flex-item oj-sm-12 oj-md-12">Associate Detail</h1>
+</div>
+<div class="oj-flex">
+    <oj-form-layout id="oj-form-layout--1274776074-1" label-edge="start" class="oj-flex-item oj-sm-12 oj-md-12">
+        <oj-input-number value="[[ $page.variables.associate.id ]]" readonly="true" label-hint="Id" id="oj-input-number--1274776074-1" required="true"></oj-input-number>
+        <oj-input-text value="[[ $page.variables.associate.name ]]" readonly="true" label-hint="Name" id="oj-input-text--1274776074-1" required="true"></oj-input-text>
+        <oj-input-number value="[[ $page.variables.associate.store ]]" readonly="true" label-hint="Store" id="oj-input-number--1274776074-2"></oj-input-number>
+        <oj-input-text value="[[ $page.variables.associate.email ]]" readonly="true" label-hint="Email" id="oj-input-text--1274776074-2" required="true" virtual-keyboard="email" validators='[{"type":"regexp", "options":{"pattern":"([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})", "hint":"Enter an email address.", "messageDetail": "Value must be of the form xxx@xxx.xx"}}]'></oj-input-text>
+    </oj-form-layout>
+</div>
+<div class="oj-flex">
+    <oj-toolbar id="oj-toolbar--1274776074-1" chroming="full" class="oj-flex-item oj-sm-12 oj-md-12">
+        <oj-button id="oj-button--1274776074-1" on-oj-action="[[$page.listeners.backButtonClicked]]">Back</oj-button>
+    </oj-toolbar>
+</div>

@@ -6,7 +6,7 @@ import createSagaMiddleware from 'redux-saga';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
 
 import AnnouncementPage from './components/AnnouncementPage';
@@ -18,12 +18,12 @@ import NavBar from './components/NavBar';
 import NotFoundPage from './components/NotFoundPage';
 import Preloader from 'components/common/Preloader';
 import ProfilePage from './components/ProfilePage';
-import SearchPage from './components/SearchPage'; 
+import SearchPage from './components/SearchPage';
 import TableDetail from './components/TableDetail';
+import AddDBPage from './components/AddDBPage';
 
 import rootReducer from './ducks/rootReducer';
 import rootSaga from './ducks/rootSaga';
-import { BrowserHistory } from 'utils/navigation-utils';
 
 const sagaMiddleware = createSagaMiddleware();
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise, sagaMiddleware)(createStore);
@@ -34,7 +34,7 @@ sagaMiddleware.run(rootSaga);
 ReactDOM.render(
   <DocumentTitle title="Amundsen - Data Discovery Portal">
     <Provider store={store}>
-      <Router history={BrowserHistory}>
+      <BrowserRouter>
         <div id="main">
           <Preloader/>
           <NavBar />
@@ -42,6 +42,7 @@ ReactDOM.render(
             <Route path="/table_detail/:cluster/:db/:schema/:table" component={TableDetail} />
             <Route path="/announcements" component={AnnouncementPage} />
             <Route path="/browse" component={BrowsePage} />
+            <Route path="/addDB" component={AddDBPage} />
             <Route path="/search" component={SearchPage} />
             <Route path="/user/:userId" component={ProfilePage} />
             <Route path="/404" component={NotFoundPage} />
@@ -50,7 +51,7 @@ ReactDOM.render(
           <Feedback />
           <Footer />
         </div>
-      </Router>
+      </BrowserRouter>
     </Provider>
   </DocumentTitle>
   , document.getElementById('content') || document.createElement('div'),

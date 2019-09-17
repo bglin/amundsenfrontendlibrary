@@ -1,0 +1,20 @@
+<oj-ext-mobile-page-template id="page-template" page-title="ProductOrder Detail">
+    
+    <div class="oj-flex-item oj-flex oj-sm-flex-direction-column oj-sm-flex-wrap-nowrap">
+        <oj-form-layout id="oj-form-layout-970226268-1" class="oj-flex-item">
+            <oj-input-number value="[[ $page.variables.productOrder.id ]]" readonly="true" label-hint="Id" id="oj-input-number-970226268-1" required="true"></oj-input-number>
+            <oj-input-number value="[[ $page.variables.productOrder.associate ]]" readonly="true" label-hint="Associate" id="oj-input-number-970226268-2" required="true"></oj-input-number>
+            <oj-input-date-time value="[[ $page.variables.productOrder.orderDate ]]" readonly="true" label-hint="Order Date" id="oj-input-date-time-970226268-1" required="true"></oj-input-date-time>
+            <oj-input-text value="[[ $page.variables.productOrder.orderStatus ]]" readonly="true" label-hint="Order Status" id="oj-input-text-970226268-1" required="true"></oj-input-text>
+            <h1 id="h1-970226268-1">Items</h1>
+            <oj-table summary="Sample Table" scroll-policy="loadMoreOnScroll" id="oj-table-970226268-1" data="[[$page.variables.productOrderLineListSDP]]" columns='[{"headerText":"Product Name","field":"productObject","sortProperty":"productObject.productName","template":"productNameCellTemplate1"},{"headerText":"Unit Price","field":"unitPrice"},{"headerText":"Quantity","field":"quantity"}]'>
+                <template slot="productNameCellTemplate1">
+                    <oj-bind-text value="[[ $current.data.items[0] ? $current.data.items[0].productName : undefined ]]"></oj-bind-text>
+                </template>
+            </oj-table>
+        </oj-form-layout>
+    </div>
+    <oj-button id="oj-button-970226268-1" on-oj-action="[[$page.listeners.backButtonClicked]]" slot="startControl" chroming="half" display="icons">
+        <span slot="startIcon" class="oj-fwk-icon oj-fwk-icon-back"></span>Back
+    </oj-button>
+</oj-ext-mobile-page-template>

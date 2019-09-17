@@ -23,6 +23,12 @@ const configDefault: AppConfig = {
       id: "nav::browse",
       href: "/browse",
       use_router: true,
+    },
+    {
+      label: "Add DB",
+      id: "nav::addDB",
+      href: "/addDB",
+      use_router: true,
     }
   ],
   tableLineage: {

@@ -1,0 +1,7 @@
+<div id="page" class="oj-hybrid-applayout-page">
+    <!-- for message notifications -->
+    <oj-messages id="vbDefaultNotifier" position="{}" display="general" messages="{{$page.variables.messagesADP}}" on-oj-close="{{$listeners.onMessageClose}}" />
+
+    <!-- Where Visual Pages will be rendered -->
+    <oj-vb-content id="vbRouterContent" class="vbcs-pages-module" config="[[vbRouterFlow]]"></oj-vb-content>
+</div>

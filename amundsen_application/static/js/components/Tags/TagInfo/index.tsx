@@ -1,26 +1,16 @@
 import * as React from 'react';
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Tag } from 'interfaces';
 import { logClick } from 'ducks/utilMethods';
 
 import './styles.scss';
-import { SubmitSearchRequest } from 'ducks/search/types';
-import { submitSearch } from 'ducks/search/reducer';
 
-interface OwnProps {
+interface TagInfoProps {
   data: Tag;
   compact?: boolean;
 }
 
-export interface DispatchFromProps {
-  submitSearch: (searchTerm: string) => SubmitSearchRequest;
-}
-
-export type TagInfoProps = OwnProps & DispatchFromProps;
-
-
-export class TagInfo extends React.Component<TagInfoProps> {
+class TagInfo extends React.Component<TagInfoProps, {}> {
   static defaultProps = {
     compact: true
   };
@@ -30,21 +20,21 @@ export class TagInfo extends React.Component<TagInfoProps> {
   }
 
   onClick = (e) => {
-    const name = this.props.data.tag_name;
     logClick(e, {
       target_type: 'tag',
-      label: name,
+      label: this.props.data.tag_name,
     });
-    this.props.submitSearch(`tag:${name}`);
   };
 
   render() {
     const name = this.props.data.tag_name;
+    const searchUrl = `/search?searchTerm=tag:${name}`;
 
     return (
-      <button
+      <Link
         id={ `tag::${name}` }
         role="button"
+        to={ searchUrl }
         className={ "btn tag-button" + (this.props.compact ? " compact" : "") }
         onClick={ this.onClick }
       >
@@ -53,13 +43,9 @@ export class TagInfo extends React.Component<TagInfoProps> {
           !this.props.compact &&
             <span className="tag-count">{ this.props.data.tag_count }</span>
         }
-      </button>
+      </Link>
     );
   }
 }
 
-export const mapDispatchToProps = (dispatch: any) => {
-  return bindActionCreators({ submitSearch }, dispatch);
-};
-
-export default connect<null, DispatchFromProps, OwnProps>(null, mapDispatchToProps)(TagInfo);
+export default TagInfo;
