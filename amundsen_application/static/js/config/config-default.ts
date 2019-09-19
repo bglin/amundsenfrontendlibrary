@@ -25,9 +25,9 @@ const configDefault: AppConfig = {
       use_router: true,
     },
     {
-      label: "Add DB",
-      id: "nav::addDB",
-      href: "/addDB",
+      label: "Connect",
+      id: "nav::connect",
+      href: "/connect",
       use_router: true,
     }
   ],

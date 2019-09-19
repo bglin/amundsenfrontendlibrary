@@ -3,11 +3,11 @@ import * as DocumentTitle from 'react-document-title';
 
 import { shallow } from 'enzyme';
 
-import { AddDBPage } from '../';
+import { AzurePage } from '../';
 
-describe('AddDBPage', () => {
+describe('AzurePage', () => {
   const setup = () => {
-    const wrapper = shallow<AddDBPage>(<AddDBPage/>)
+    const wrapper = shallow<AzurePage>(<AzurePage/>)
     return { props, wrapper };
   };
 
@@ -22,16 +22,16 @@ describe('AddDBPage', () => {
 
   describe('render', () => {
     it('renders DocumentTitle w/ correct title', () => {
-      expect(wrapper.find(DocumentTitle).props().title).toEqual('AddDB - Amundsen');
+      expect(wrapper.find(DocumentTitle).props().title).toEqual('Connect - Amundsen');
     });
 
     it('renders correct header', () => {
-      expect(wrapper.find('#add-header').text()).toEqual('Connect a New Database');
+      expect(wrapper.find('#add-header').text()).toEqual('Connect an Azure Database');
     });
 
     it('renders <hr>', () => {
       expect(wrapper.contains(<hr className="header-hr"/>));
     });
-    
+
   });
 });

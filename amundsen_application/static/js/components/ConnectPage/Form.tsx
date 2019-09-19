@@ -1,5 +1,6 @@
 import * as React from "react";
 import { IFieldProps } from "./Field";
+import './styles.scss';
 
 export interface IFormContext extends IFormState {
   /* Function that allows values in the values state to be set */

@@ -20,7 +20,10 @@ import Preloader from 'components/common/Preloader';
 import ProfilePage from './components/ProfilePage';
 import SearchPage from './components/SearchPage';
 import TableDetail from './components/TableDetail';
-import AddDBPage from './components/AddDBPage';
+import ConnectPage from './components/ConnectPage';
+import OraclePage from './components/ConnectPage/OraclePage';
+import AzurePage from './components/ConnectPage/AzurePage';
+import AuroraPage from './components/ConnectPage/AuroraPage';
 
 import rootReducer from './ducks/rootReducer';
 import rootSaga from './ducks/rootSaga';
@@ -42,7 +45,10 @@ ReactDOM.render(
             <Route path="/table_detail/:cluster/:db/:schema/:table" component={TableDetail} />
             <Route path="/announcements" component={AnnouncementPage} />
             <Route path="/browse" component={BrowsePage} />
-            <Route path="/addDB" component={AddDBPage} />
+            <Route path="/connect" component={ConnectPage} />
+            <Route path="/oracle" component={OraclePage} />
+            <Route path="/azure" component={AzurePage} />
+            <Route path="/aurora" component={AuroraPage} />
             <Route path="/search" component={SearchPage} />
             <Route path="/user/:userId" component={ProfilePage} />
             <Route path="/404" component={NotFoundPage} />
