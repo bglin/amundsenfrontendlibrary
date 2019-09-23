@@ -1,0 +1,30 @@
+@import 'variables';
+
+.search-page {
+  .tabs-component,
+  .search-list-container {
+    margin-top: 32px;
+  }
+
+  @media (max-width: $screen-sm-max) {
+    .tabs-component,
+    .search-list-container {
+      margin-top: 16px;
+    }
+  }
+
+  .tab-content {
+    .search-list-header {
+      display: flex;
+      flex-direction: row;
+      label {
+        color: $text-medium;
+        font-size: 18px;
+      }
+    }
+  }
+
+  .search-error {
+    text-align: center;
+  }
+}

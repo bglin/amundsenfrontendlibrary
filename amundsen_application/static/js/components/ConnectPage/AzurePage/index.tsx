@@ -4,7 +4,7 @@ import { Field } from "../Field";
 import * as DocumentTitle from 'react-document-title';
 import { Link } from 'react-router-dom';
 
-
+export const database_type2 = "Azure";
 const fields: IFields = {
   username: {
     id: "username",
@@ -21,15 +21,9 @@ const fields: IFields = {
     id: "server",
     label: "Server Name",
     validation: { rule: required }
-  },
-  database: {
-    id: "database",
-    label: "Database",
-    editor: "dropdown",
-    options: ["", "Azure"],
-    validation: { rule: required }
   }
 };
+
 export class AzurePage extends React.Component<{}, any> {
   constructor(props){
   super(props);
@@ -57,6 +51,7 @@ export class AzurePage extends React.Component<{}, any> {
 
     }
   render() {
+
     return (
       <DocumentTitle title="Connect - Amundsen">
         <div className="container">
@@ -88,7 +83,6 @@ export class AzurePage extends React.Component<{}, any> {
                    <Field {...fields.username}/>
                    <Field {...fields.password}/>
                    <Field {...fields.server}/>
-                   <Field {...fields.database}/>
                   </React.Fragment>
               )}
             />

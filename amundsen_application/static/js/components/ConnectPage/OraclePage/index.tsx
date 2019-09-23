@@ -6,6 +6,7 @@ import { FilePond } from 'react-filepond';
 import { Link } from 'react-router-dom';
 import "filepond/dist/filepond.min.css";
 
+export const database_type1 = "Oracle";
 const fields: IFields = {
   username: {
     id: "username",
@@ -22,19 +23,11 @@ const fields: IFields = {
     id: "service",
     label: "Service Name",
     validation: { rule: required }
-  },
-  database: {
-    id: "database",
-    label: "Database",
-    editor: "dropdown",
-    options: ["", "Oracle"],
-    validation: { rule: required }
   }
 };
 export class OraclePage extends React.Component<{}, any> {
   constructor(props){
   super(props);
-
    this.state = {
          displayMenu: false,
        };
@@ -89,7 +82,6 @@ export class OraclePage extends React.Component<{}, any> {
                    <Field {...fields.username}/>
                    <Field {...fields.password}/>
                    <Field {...fields.service} />
-                   <Field {...fields.database}/>
                    <FilePond
                     server="http://localhost:5000/api/admin/v0"
                     labelIdle="<span style='color:#31708f'>Drag & Drop your Cloud Wallet or <span class='filepond--label-action style='color:#31708f'>Browse</span></span>"

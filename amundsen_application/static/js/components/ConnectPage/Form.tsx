@@ -2,6 +2,11 @@ import * as React from "react";
 import { IFieldProps } from "./Field";
 import './styles.scss';
 
+/*import { database_type1} from './OraclePage/index';
+import { database_type2} from './AzurePage/index';
+import { database_type3} from './AuroraPage/index';
+*/
+
 export interface IFormContext extends IFormState {
   /* Function that allows values in the values state to be set */
   setValues: (values: IValues) => void;
@@ -9,6 +14,7 @@ export interface IFormContext extends IFormState {
   /* Function that validates a field */
   validate: (fieldName: string) => void;
 }
+
 /*
  * The context which allows state and functions to be shared with Field.
  * Note that we need to pass createContext a default value which is why undefined is unioned in the type
@@ -117,11 +123,11 @@ export class Form extends React.Component<IFormProps, IFormState> {
     });
     return haveError;
   }
-
   /**
    * Handles form submission
    * @param {React.FormEvent<HTMLFormElement>} e - The form event
    */
+
   private handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
@@ -179,6 +185,17 @@ export class Form extends React.Component<IFormProps, IFormState> {
    * @returns {boolean} - Whether the form submission was successful or not
    */
    private async submitForm(): Promise<boolean> {
+     var jsonText = JSON.stringify(this.state.values)
+     var actualObj = JSON.parse(jsonText)
+     if (actualObj.hasOwnProperty('service')) {
+       actualObj.database = "oracle"
+     }
+     if (actualObj.hasOwnProperty('server')) {
+       actualObj.database = "azure"
+     }
+     if (actualObj.hasOwnProperty('url')) {
+       actualObj.database = "aurora"
+     }
      try {
        const response = await fetch(this.props.action, {
          method: "post",
@@ -186,7 +203,7 @@ export class Form extends React.Component<IFormProps, IFormState> {
            "Content-Type": "application/json",
            Accept: "application/json"
          }),
-         body: JSON.stringify(this.state.values)
+         body: JSON.stringify(actualObj)
        });
        if (response.status === 400) {
          /* Map the validation errors to IErrors */

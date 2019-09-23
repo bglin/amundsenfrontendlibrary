@@ -4,6 +4,7 @@ import { Field } from "../Field";
 import * as DocumentTitle from 'react-document-title';
 import { Link } from 'react-router-dom';
 
+export const database_type3 = "Aurora";
 const fields: IFields = {
   username: {
     id: "username",
@@ -19,13 +20,6 @@ const fields: IFields = {
   url: {
     id: "url",
     label: "URL",
-    validation: { rule: required }
-  },
-  database: {
-    id: "database",
-    label: "Database",
-    editor: "dropdown",
-    options: ["", "Aurora"],
     validation: { rule: required }
   }
 };
@@ -87,7 +81,6 @@ export class AuroraPage extends React.Component<{}, any> {
                    <Field {...fields.username}/>
                    <Field {...fields.password}/>
                    <Field {...fields.url}/>
-                   <Field {...fields.database}/>
                   </React.Fragment>
               )}
             />

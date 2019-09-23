@@ -1,0 +1,42 @@
+@import 'variables';
+
+.editable-container {
+  display: flex;
+  font-size: 16px;
+  color: $text-medium;
+
+  &:hover {
+   .edit-link {
+     opacity: 1;
+   }
+  }
+
+  .edit-link {
+    opacity: 0;
+    margin-left: 4px;
+    text-decoration: none;
+
+    &.no-value {
+      opacity: 1;
+      margin-left: 0;
+    }
+  }
+
+  .editable-text {
+    flex-grow: 0.1;
+    word-break: break-word;
+  }
+
+  .editable-textarea {
+    padding: 0;
+    outline: none;
+    border: 0;
+    background: $brand-color-1;
+    caret-color: $brand-color-4;
+  }
+
+  .editable-textarea:focus-within {
+    outline: none;
+    background: white;
+  }
+}

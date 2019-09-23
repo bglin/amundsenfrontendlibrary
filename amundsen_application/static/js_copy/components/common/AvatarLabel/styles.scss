@@ -1,0 +1,29 @@
+@import 'variables';
+
+.avatar-label-component {
+  display: flex;
+  font-size: 12px;
+  word-wrap: break-word;
+}
+
+.component-avatar {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 4px;
+}
+
+.component-label {
+  margin-top: auto;
+  margin-bottom: auto;
+  cursor: inherit;
+  font-weight: normal;
+  min-width: 0;
+}
+
+.avatar-overlap {
+  margin-left: -5px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}

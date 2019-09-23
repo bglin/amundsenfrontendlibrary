@@ -1,0 +1,56 @@
+@import 'variables';
+
+.nav-bar {
+  height: 48px;
+  box-shadow: 0 2px 0 -1px $gray-lightest;
+  padding: 8px 32px 8px 32px;
+  color: $text-medium;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav-bar sup {
+  font-size: 12px;
+}
+
+.nav-bar a {
+  text-decoration: none;
+  color: $text-medium;
+}
+
+.nav-bar a:hover,
+.nav-bar a:hover span {
+  color: $brand-color-4;
+}
+
+.nav-bar a.active {
+  color: $brand-color-4;
+}
+
+.nav-bar .nav-bar-right {
+  margin-left: auto;
+  display: flex;
+}
+.nav-bar-left > *,
+.nav-bar-right > * {
+  margin: auto 10px;
+}
+.nav-bar-left > *:first-child {
+  margin-left: 0px;
+}
+.nav-bar-right > *:last-child {
+  margin-right: 0px;
+}
+
+.nav-bar .sb-avatar {
+  -webkit-box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, .76);
+  -moz-box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, .76);
+  box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, .76);
+}
+
+.logo-icon {
+  max-height: 32px;
+  max-width: 144px;
+  margin-right: 20px;
+}

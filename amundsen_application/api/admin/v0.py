@@ -32,7 +32,7 @@ def sample_data():
 
             print('Load Data Initiated')
             db_cred=json.loads(json.dumps(request.json))
-
+            print(db_cred)
             try:
                 db = adw_extract.connect_db(db_cred['username'],db_cred['password'],db_cred['service'])
 
