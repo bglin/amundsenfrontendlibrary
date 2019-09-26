@@ -3,6 +3,7 @@ from flask.blueprints import Blueprint
 from werkzeug.utils import secure_filename
 import subprocess
 import os
+import sys
 import zipfile
 from amundsen_application.api.admin import exceptions
 from amundsen_application.api.admin import adw_extract
@@ -32,31 +33,20 @@ def sample_data():
 
             print('Load Data Initiated')
             db_cred=json.loads(json.dumps(request.json))
-            print(db_cred)
             try:
-                db = adw_extract.connect_db(db_cred['username'],db_cred['password'],db_cred['service'])
-
-                # query database for metadata
-                result_col,result_table = adw_extract.query_db(db)
-
-                result_col = adw_extract.sample_col(result_col)
-                result_table = adw_extract.sample_table(result_table)
-                result_usage = adw_extract.sample_col_usage(result_col)
-                result_user = adw_extract.sample_user()
-                sample_app = adw_extract.sample_app(result_usage)
 
                 ##change this path to where amundsendatabuilder lives on your client##
                 path ='/Users/bglin/amundsendatabuilder'
 
-                ## write tables to csv files
-                adw_extract.write_to_csv(result_col,result_table,result_usage,result_user,sample_app,path)
 
                 ## Call sample_data_loader.py to load data
                 python_bin=os.path.join(path,'venv/bin/python')
-                script_file = os.path.join(path,'example/scripts/sample_data_loader.py')
+                script_file = os.path.join(path,'example/scripts/sample_oracle_loader.py')
+
+                print('Extracting data from ADW')
 
                 with adw_extract.cd(path):
-                    subprocess.Popen([python_bin, script_file])
+                    subprocess.Popen([python_bin, script_file,db_cred['username'],db_cred['password'],db_cred['service']])
 
                 return jsonify({'message': 'Database Succesfully Added Into Amundsen'})
 
