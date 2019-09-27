@@ -4,7 +4,7 @@ import { Field } from "../Field";
 import * as DocumentTitle from 'react-document-title';
 import { FilePond } from 'react-filepond';
 import { Link } from 'react-router-dom';
-import "filepond/dist/filepond.min.css";
+import "../filepond.min.css";
 
 export const database_type1 = "Oracle";
 const fields: IFields = {
@@ -66,9 +66,9 @@ export class OraclePage extends React.Component<{}, any> {
                     <div  className="dropdown" style = {{background:"#428bca",width:"200px"}} >
                       <div className="button" onClick={this.showDropdownMenu}> Select Database </div>
                       { this.state.displayMenu ? (
-                      <ul>
-                      <li><Link to="/azure">Microsoft Azure</Link></li>
-                      <li><Link to="/aurora">Amazon Aurora</Link></li>
+                      <ul id="dbUl">
+                      <li id="dbLi"><Link to="/azure">Microsoft Azure</Link></li>
+                      <li id="dbLi"><Link to="/aurora">Amazon Aurora</Link></li>
                       </ul>
                       ):
                       (

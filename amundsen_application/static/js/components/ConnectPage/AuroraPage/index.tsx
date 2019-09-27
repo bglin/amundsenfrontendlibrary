@@ -65,9 +65,9 @@ export class AuroraPage extends React.Component<{}, any> {
                     <div  className="dropdown" style = {{background:"#428bca",width:"200px"}} >
                       <div className="button" onClick={this.showDropdownMenu}> Select Database </div>
                       { this.state.displayMenu ? (
-                      <ul>
-                      <li><Link to="/oracle">Oracle Database</Link></li>
-                      <li><Link to="/azure">Microsoft Azure</Link></li>
+                      <ul id="dbUl">
+                      <li id="dbLi"><Link to="/oracle">Oracle Database</Link></li>
+                      <li id="dbLi"><Link to="/azure">Microsoft Azure</Link></li>
                       </ul>
                       ):
                       (

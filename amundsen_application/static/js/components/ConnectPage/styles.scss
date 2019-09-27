@@ -1,67 +1,73 @@
 .dropdown {
-     position: relative;
-     display: inline-block;
-     border-radius: 5px;
-     margin-bottom: 15px;
-
+  position: relative;
+  display: inline-block;
+  border-radius: 5px;
+  margin-bottom: 15px;
 }
 
 #connect {
-  margin-left:15px;
+  margin-left: 15px;
 }
- ul {
-     list-style-type: none;
-     margin: 0;
-     padding: 0;
-     top:45px;
-     right:0px;
-     width: 200px;
-     background-color: white;
-     font-weight:bold;
-     position: absolute;
 
-     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-     z-index: 1;
+#dbUl {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  top: 45px;
+  right: 0;
+  width: 200px;
+  background-color: white;
+  font-weight: bold;
+  position: absolute;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 1;
 }
+
 a {
-     color: #000;
-     text-decoration: none;
-     display: block;
+  color: #000;
+  text-decoration: none;
+  display: block;
 }
-li {
+
+#dbLi {
   padding: 8px 16px;
   border-bottom: 1px solid #e5e5e5;
 }
- li:last-child {
-     border-bottom: none;
-}
- li:hover {
-     background-color: #e5e5e5;
-     color: white;
-}
- .button{
-     width:178px;
-     height:42px;
-     background-color:#428bca ;
-     padding:12px;
-     border-radius:5px;
-     font-weight:bold;
-     color:white;
-}
- .button:before{
-     content:"";
-     position:absolute;
-     width:0px;
-     height:0px;
-     border: 10px solid;
-     border-color: white transparent transparent transparent;
-     right:6px;
-     top:18px;
+
+#dbLi:last-child {
+  border-bottom: none;
 }
 
-.alert{
-  width:98%;
+#dbLi:hover {
+  background-color: #e5e5e5;
+  color: white;
 }
-.form-group{
-  width:98%;
+
+.button {
+  width: 178px;
+  height: 42px;
+  background-color: #428bca;
+  padding: 12px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+}
+
+.button:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 10px solid;
+  border-color: white transparent transparent transparent;
+  right: 6px;
+  top: 18px;
+}
+
+.alert {
+  width: 98%;
+}
+
+.form-group {
+  width: 98%;
 }
