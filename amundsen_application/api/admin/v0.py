@@ -36,7 +36,7 @@ def sample_data():
             db_cred=json.loads(json.dumps(request.json))
 
             ##change this path to where amundsendatabuilder lives on your client##
-            path ='/Users/bglin/amundsendatabuilder'
+            path ='/home/opc/amundsen_lyft_app/v1_databuilder'
 
             ## Call sample_data_loader.py to load data
             python_bin=os.path.join(path,'venv/bin/python')
