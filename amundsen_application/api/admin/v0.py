@@ -6,6 +6,7 @@ import os
 import sys
 import zipfile
 from amundsen_application.api.admin import exceptions
+from sqlalchemy import exc
 from amundsen_application.api.admin import adw_extract
 
 admin_blueprint = Blueprint('admin', __name__,url_prefix='/api/admin/v0')
@@ -33,29 +34,34 @@ def sample_data():
 
             print('Load Data Initiated')
             db_cred=json.loads(json.dumps(request.json))
-            try:
 
-                ##change this path to where amundsendatabuilder lives on your client##
-                path ='/Users/bglin/amundsendatabuilder'
+            ##change this path to where amundsendatabuilder lives on your client##
+            path ='/Users/bglin/amundsendatabuilder'
 
+            ## Call sample_data_loader.py to load data
+            python_bin=os.path.join(path,'venv/bin/python')
+            script_file = os.path.join(path,'example/scripts/sample_oracle_loader.py')
 
-                ## Call sample_data_loader.py to load data
-                python_bin=os.path.join(path,'venv/bin/python')
-                script_file = os.path.join(path,'example/scripts/sample_oracle_loader.py')
+            print('Extracting data from ADW')
 
-                print('Extracting data from ADW')
+            with adw_extract.cd(path):
+                try:
+                    subprocess.check_output([python_bin, script_file,db_cred['username'],db_cred['password'],db_cred['service']],
+                                            stderr=subprocess.STDOUT)
+                except subprocess.CalledProcessError:
+                    raise exceptions.DBError('Could not connect DB. Check if username/password is correct. ',status_code=400)
 
-                with adw_extract.cd(path):
-                    subprocess.Popen([python_bin, script_file,db_cred['username'],db_cred['password'],db_cred['service']])
+                    # subprocess.Popen([python_bin, script_file,db_cred['username'],db_cred['password'],db_cred['service']])
 
-                return jsonify({'message': 'Database Succesfully Added Into Amundsen'})
+            return jsonify({'message': 'Database Succesfully Added Into Amundsen'})
 
-            except adw_extract.cx_Oracle.DatabaseError as e:
-                errorObj, =e.args
-                if errorObj.code == 1017:
-                    raise exceptions.DBError('Username/Password Incorrect',status_code=400)
-                if errorObj.code == 12154:
-                    raise exceptions.DBError('Service Name is Incorrect or Wallet File Has Not Been Uploaded',status_code=400)
+            # except sqlalchemy.exc.DatabaseError as err:
+            # except:
+            #     # if err.orig.args[0]== 1017:
+            #     #     raise exceptions.DBError('Username/Password Incorrect',status_code=400)
+            #     # if err.orig.args[0]== 12154:
+            #     #     raise exceptions.DBError('Service Name is Incorrect or Wallet File Has Not Been Uploaded',status_code=400)
+            #     raise exceptions.DBError('db error',status_code=400)
 
 
         ############### check if the POST request is sending a file####################
