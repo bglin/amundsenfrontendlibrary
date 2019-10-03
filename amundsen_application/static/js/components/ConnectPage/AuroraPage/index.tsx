@@ -4,7 +4,6 @@ import { Field } from "../Field";
 import * as DocumentTitle from 'react-document-title';
 import { Link } from 'react-router-dom';
 
-export const database_type3 = "Aurora";
 const fields: IFields = {
   username: {
     id: "username",

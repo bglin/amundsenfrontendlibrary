@@ -6,7 +6,6 @@ import { FilePond } from 'react-filepond';
 import { Link } from 'react-router-dom';
 import "../filepond.min.css";
 
-export const database_type1 = "Oracle";
 const fields: IFields = {
   username: {
     id: "username",

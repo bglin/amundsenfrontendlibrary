@@ -66,7 +66,6 @@ export const Field: React.SFC<IFieldProps> = ({
                 style={getEditorStyle(context.errors)}
                 onChange={
                   (e: React.FormEvent<HTMLInputElement>) =>
-                    /*console.log(e)*/ /* TODO: push change to form values */
                     context.setValues({ [id]: e.currentTarget.value })
                 }
                 onBlur={() => context.validate(id)}
@@ -83,7 +82,6 @@ export const Field: React.SFC<IFieldProps> = ({
                 style={getEditorStyle(context.errors)}
                 onChange={
                   (e: React.FormEvent<HTMLInputElement>) =>
-                    /*console.log(e)*/ /* TODO: push change to form values */
                     context.setValues({ [id]: e.currentTarget.value })
                 }
                 onBlur={() => context.validate(id)}
@@ -100,7 +98,6 @@ export const Field: React.SFC<IFieldProps> = ({
                 style={getEditorStyle(context.errors)}
                 onChange={
                   (e: React.FormEvent<HTMLSelectElement>) =>
-                    /*console.log(e)*/ /* TODO: push change to form values */
                     context.setValues({ [id]: e.currentTarget.value })
                 }
                 onBlur={() => context.validate(id)}

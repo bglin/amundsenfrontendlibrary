@@ -2,10 +2,6 @@ import * as React from "react";
 import { IFieldProps } from "./Field";
 import './styles.scss';
 
-/*import { database_type1} from './OraclePage/index';
-import { database_type2} from './AzurePage/index';
-import { database_type3} from './AuroraPage/index';
-*/
 
 export interface IFormContext extends IFormState {
   /* Function that allows values in the values state to be set */
