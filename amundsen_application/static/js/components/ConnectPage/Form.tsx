@@ -129,8 +129,6 @@ export class Form extends React.Component<IFormProps, IFormState> {
   ): Promise<void> => {
     e.preventDefault();
 
-    console.log(this.state.values);
-
     if (this.validateForm()) {
       const submitSuccess: boolean = await this.submitForm();
       this.setState({ submitSuccess });
