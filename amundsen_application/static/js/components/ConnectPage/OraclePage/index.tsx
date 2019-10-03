@@ -58,7 +58,7 @@ export class OraclePage extends React.Component<{}, any> {
               <h3 id="add-header">Connect an Oracle Database</h3>
               <hr className="header-hr"/>
               <Form
-                action="http://localhost:5000/api/admin/v0"
+                action="http://129.213.125.129:5000/api/admin/v0"
                 fields={fields}
                 render={() => (
                   <React.Fragment>
@@ -82,7 +82,7 @@ export class OraclePage extends React.Component<{}, any> {
                    <Field {...fields.password}/>
                    <Field {...fields.service} />
                    <FilePond
-                    server="http://localhost:5000/api/admin/v0"
+                    server="http://129.213.125.129:5000/api/admin/v0"
                     labelIdle="<span style='color:#31708f'>Drag & Drop your Cloud Wallet or <span class='filepond--label-action style='color:#31708f'>Browse</span></span>"
                     />
                     <br></br>
